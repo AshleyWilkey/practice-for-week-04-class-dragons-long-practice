@@ -3,8 +3,8 @@ const chai = require("chai");
 const expect = chai.expect;
 const { fileContainsClass } = require("./helpers");
 
-const problemModulePath = "../classes/dragon.js";
-const Dragon = require(problemModulePath);
+const problemModulePath = "../dist/classes/dragon.js";
+const { Dragon } = require(problemModulePath);
 
 const filePath = path.resolve(__dirname, problemModulePath);
 const fileContainsClassResult = fileContainsClass(filePath, "Dragon");
@@ -62,5 +62,3 @@ describe("Dragon class", () => {
     });
   });
 });
-
-

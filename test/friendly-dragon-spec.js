@@ -5,14 +5,11 @@ const sinon = require("sinon");
 
 const { fileContainsClass } = require("./helpers");
 
-const phaseModulePath = "../classes/friendly-dragon.js";
-const FriendlyDragon = require(phaseModulePath);
+const phaseModulePath = "../dist/classes/friendly-dragon.js";
+const { FriendlyDragon } = require(phaseModulePath);
 
 const filePath = path.resolve(__dirname, phaseModulePath);
-const fileContainsClassResult = fileContainsClass(
-  filePath,
-  "FriendlyDragon"
-);
+const fileContainsClassResult = fileContainsClass(filePath, "FriendlyDragon");
 
 describe("The classes/friendly-dragon.js module file", () => {
   it("does not export null or undefined", () => {
@@ -33,13 +30,12 @@ describe("FriendlyDragon class", () => {
     expect(FriendlyDragon).to.not.deep.equal({});
   });
 
-
   it("should be a class", () => {
     expect(fileContainsClassResult).to.be.true;
   });
 
   it("is a child of the `Dragon` parent class", () => {
-    const Dragon = require("../classes/dragon");
+    const { Dragon } = require("../dist/classes/dragon");
     expect(new FriendlyDragon()).to.be.an.instanceOf(Dragon);
   });
 
@@ -90,12 +86,11 @@ describe("FriendlyDragon class", () => {
     beforeEach(() => {
       sinon.stub(console, "log");
     });
-  
+
     afterEach(() => {
       console.log.restore();
     });
-  
-  
+
     it("logs each life goal to the console", () => {
       const instance = new FriendlyDragon(
         "Puff",
@@ -107,17 +102,16 @@ describe("FriendlyDragon class", () => {
         ],
         "Jackie Paper"
       );
-  
+
       instance.hasLifeGoals();
-  
+
       expect(console.log.calledThrice).to.be.true;
       expect(console.log.calledWith("Puff likes to live by the sea")).to.be
         .true;
-      expect(
-        console.log.calledWith("Puff likes to frolick in the autumn mist")
-      ).to.be.true;
-      expect(console.log.calledWith("Puff likes to help small children")).to
-        .be.true;
+      expect(console.log.calledWith("Puff likes to frolick in the autumn mist"))
+        .to.be.true;
+      expect(console.log.calledWith("Puff likes to help small children")).to.be
+        .true;
     });
   });
 

@@ -11,10 +11,7 @@ function fileContainsPattern(filePath, pattern) {
 }
 
 function fileContainsClass(filePath, className) {
-  return fileContainsPattern(
-    filePath,
-    `class ${className}\\s*(extends\\s+[A-Za-z]+)?\\s*\\{`
-  );
+  return fileContainsPattern(filePath, `class ${className}`);
 }
 
 function fileContainsFunction(filePath, functionName) {
